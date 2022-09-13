@@ -5,6 +5,11 @@ import { Navbar } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
 import { Nav } from 'react-bootstrap';
 
+import Home from '../components/home';
+import Budgeting from '../components/budgeting';
+import HotelFood from '../components/hotelFood';
+import Rides from '../components/hotelFood';
+
 function App() { 
 
   return (
