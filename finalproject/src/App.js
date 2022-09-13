@@ -37,21 +37,21 @@ function App() {
     </Router>
   )
 
-  function Home() {
-    return <h2>Home</h2>
-  };
+  // function Home() {
+  //   return <h2>Home</h2>
+  // };
 
-  function HotelFood() {
-    return <h2>Hotel + Food</h2>
-  };
+  // function HotelFood() {
+  //   return <h2>Hotel + Food</h2>
+  // };
 
-  function Rides() {
-    return <h2>Rides</h2>
-  };
+  // function Rides() {
+  //   return <h2>Rides</h2>
+  // };
 
-  function Budgeting() {
-    return <h2>Budgeting</h2>
-  };
+  // function Budgeting() {
+  //   return <h2>Budgeting</h2>
+  // };
  
 }
 
