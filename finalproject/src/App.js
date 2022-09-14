@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Routes, Route, Link, useRouteMatch, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Routes, Route, Link, useRouteMatch } from 'react-router-dom';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Navbar } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
