@@ -9,7 +9,8 @@ function Home() {
 
     return(
        <>
-        <h2>Home</h2>
+       <br/>
+        <h2>Welcome</h2>
         <Carousel>
             <Carousel.Item>
                 <img
@@ -25,7 +26,7 @@ function Home() {
             <Carousel.Item>
                 <img
                     className="d-block w-100"
-                    src="https://cdn1.parksmedia.wdprapps.disney.com/media/dvc/en/destinations/list/california/grand-californian-hotel/grand-californian-00-full-2.jpg"
+                    src="https://s.hdnux.com/photos/01/27/04/26/22824320/3/rawImage.jpg"
                     alt="Food and Hotel"
                 />
 
@@ -37,7 +38,7 @@ function Home() {
             <Carousel.Item>
                 <img
                     className="d-block w-100"
-                    src="https://www.tripsavvy.com/thmb/eGMezx_5_0hJE1NBptAlOfg4mr0=/1500x844/smart/filters:no_upscale()/5064932631_be1f374e1b_o-5754ba5b3df78c9b4698e8de.jpg"
+                    src="https://dvcshop.com/wp-content/uploads/2021/10/DCA-e1636776448703.jpg"
                     alt="Rides and Ride Times"
                 />
 
