@@ -1,14 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useRouteMatch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useRouteMatch, BrowserRouter } from 'react-router-dom';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Navbar } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
 import { Nav } from 'react-bootstrap';
 
-import Home from '../components/home';
-import Budgeting from '../components/budgeting';
-import HotelFood from '../components/hotelFood';
-import Rides from '../components/hotelFood';
+import Home from './home';
+import Budgeting from './budgeting';
+import HotelFood from './hotelFood';
+import Rides from './rides';
 
 function App() { 
 
@@ -25,20 +25,22 @@ function App() {
           </Nav>
         </Container>
       </Navbar>
-      <Routes>
-        <Route path='/home'>
-          <Home/>
-        </Route>
-        <Route path='/hotelFood'>
-          <HotelFood/>
-        </Route>
-        <Route path='/rides'>
-          <Rides/>
-        </Route>
-        <Route path='/budgeting'>
-          <Budgeting/>
-        </Route>
-      </Routes>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/home' element={<Home/>}>
+            {/* <Home/> */}
+          </Route>
+          <Route path='/hotelFood' element={<HotelFood/>}>
+            {/* <HotelFood/> */}
+          </Route>
+          <Route path='/rides'>
+            <Rides/>
+          </Route>
+          <Route path='/budgeting'>
+            <Budgeting/>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </Router>
   )
 
