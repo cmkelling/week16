@@ -29,39 +29,18 @@ function App() {
         <Routes>
           <Routes>
           <Route path='/home' element={<Home/>}/>
-            {/* <Home/> */}
           </Routes>
           <Routes>
           <Route path='/hotelFood' element={<HotelFood/>}/>
-            {/* <HotelFood/> */}
           </Routes>
           <Routes>
           <Route path='/rides' element={<Rides/>}/>
-            {/* <Rides/> */}
           <Route path='/budgeting' element={<Budgeting/>}/>
-            {/* <Budgeting/> */}
           </Routes>
         </Routes>
       
     </div>
   )
-
-  // function Home() {
-  //   return <h2>Home</h2>
-  // };
-
-  // function HotelFood() {
-  //   return <h2>Hotel + Food</h2>
-  // };
-
-  // function Rides() {
-  //   return <h2>Rides</h2>
-  // };
-
-  // function Budgeting() {
-  //   return <h2>Budgeting</h2>
-  // };
- 
 }
 
 export default App;
