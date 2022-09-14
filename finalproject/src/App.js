@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useRouteMatch, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Routes, Route, Link, useRouteMatch, BrowserRouter } from 'react-router-dom';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Navbar } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
@@ -13,35 +13,37 @@ import Rides from './rides';
 function App() { 
 
   return (
-    <Router>
-      <Navbar bg="dark" variant="dark">
+    <div>
+      {/* <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="/home">Disney 2023</Navbar.Brand>
+          <Navbar.Brand to="./home">Disney 2023</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="/hotelFood">Hotel + Food</Nav.Link>
-            <Nav.Link href="/rides">Rides</Nav.Link>
-            <Nav.Link href="/budgeting">Budgeting</Nav.Link>
+            <Nav.Link as={Link} to="./home">Home</Nav.Link>
+            <Nav.Link as={Link} to="./hotelFood">Hotel + Food</Nav.Link>
+            <Nav.Link as={Link} to="./rides">Rides</Nav.Link>
+            <Nav.Link as={Link} to="./budgeting">Budgeting</Nav.Link>
           </Nav>
         </Container>
-      </Navbar>
-      <BrowserRouter>
+      </Navbar> */}
+
         <Routes>
-          <Route path='/home' element={<Home/>}>
+          <Routes>
+          <Route path='/home' element={<Home/>}/>
             {/* <Home/> */}
-          </Route>
-          <Route path='/hotelFood' element={<HotelFood/>}>
+          </Routes>
+          <Routes>
+          <Route path='/hotelFood' element={<HotelFood/>}/>
             {/* <HotelFood/> */}
-          </Route>
-          <Route path='/rides'>
-            <Rides/>
-          </Route>
-          <Route path='/budgeting'>
-            <Budgeting/>
-          </Route>
+          </Routes>
+          <Routes>
+          <Route path='/rides' element={<Rides/>}/>
+            {/* <Rides/> */}
+          <Route path='/budgeting' element={<Budgeting/>}/>
+            {/* <Budgeting/> */}
+          </Routes>
         </Routes>
-      </BrowserRouter>
-    </Router>
+      
+    </div>
   )
 
   // function Home() {
