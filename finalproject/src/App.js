@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div>
-      {/* <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand to="./home">Disney 2023</Navbar.Brand>
           <Nav className="me-auto">
@@ -24,7 +24,7 @@ function App() {
             <Nav.Link as={Link} to="./budgeting">Budgeting</Nav.Link>
           </Nav>
         </Container>
-      </Navbar> */}
+      </Navbar>
 
         <Routes>
           <Routes>
