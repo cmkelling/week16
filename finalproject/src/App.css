@@ -33,3 +33,14 @@ h3, p{
   font-family: Trattatello, fantasy;
   font-size: larger;
 }
+
+.flex-column{
+  font-family: Trattatello, fantasy;
+  font-size: x-large;
+}
+
+.card{
+  color: black;
+  font-family: Trattatello, fantasy;
+  font-size: larger;
+}
