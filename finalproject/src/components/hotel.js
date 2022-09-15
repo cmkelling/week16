@@ -9,12 +9,12 @@ export default function Hotel() {
         <>
         <Container>
             <Row>
-            <h2>The Grand Californian</h2>
+            <h2 className='mx-auto' >The Grand Californian</h2>
             {/* <img className='disney-map' src='https://cdn1.parksmedia.wdprapps.disney.com/media/dvc/en/destinations/list/california/grand-californian-hotel/grand-californian-00-full-2.jpg' alt='Grand Californian Exterior'></img> */}
             {/* <img className='disney-map' src='https://www.disneytouristblog.com/wp-content/uploads/2017/07/grand-californian-lobby-fourth-floor.jpg' alt='Inside the hotel'></img> */}
             {/* <img className='disney-map' src='https://cache.undercovertourist.com/hotel-rooms/disneys-grand-californian-room-96805-18992-16b230c0da5.JPG' alt='Hotel Room'></img> */}
 
-            <Card style={{ width: '30rem' }}>
+            <Card className='me-3 mb-3' style={{ width: '25rem' }}>
                 <Card.Img variant="top" src='https://cdn1.parksmedia.wdprapps.disney.com/media/dvc/en/destinations/list/california/grand-californian-hotel/grand-californian-00-full-2.jpg' alt='Grand Californian Exterior' />
                 <Card.Body className='card'>
                     <Card.Title>Exterior</Card.Title>
@@ -24,7 +24,7 @@ export default function Hotel() {
                 </Card.Body>
             </Card>
 
-            <Card style={{ width: '30rem' }}>
+            <Card style={{ width: '25rem' }}>
             <Card.Img variant="top" src='https://www.disneytouristblog.com/wp-content/uploads/2017/07/grand-californian-lobby-fourth-floor.jpg' alt='Inside the hotel' />
             <Card.Body className='card'>
                 <Card.Title>Interior</Card.Title>
@@ -34,7 +34,7 @@ export default function Hotel() {
             </Card.Body>
             </Card>
 
-            <Card style={{ width: '30rem' }}>
+            <Card style={{ width: '25rem' }}>
             <Card.Img variant="top" src='https://cache.undercovertourist.com/hotel-rooms/disneys-grand-californian-room-96805-18992-16b230c0da5.JPG' alt='Grand Californian Exterior' />
             <Card.Body className='card'>
                 <Card.Title>Room Snapshot</Card.Title>
