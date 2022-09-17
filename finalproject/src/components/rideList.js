@@ -1,24 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { ridesAPI } from '../rest/RidesAPI';
 
 
 export default function List (){
 
     // let apiEndpoint = 'https://631d211d789612cd07a69e37.mockapi.io/v1/Rides';
-
-    const [Rides, setRides] = useState([]);
-    useEffect(() => {
-    RidesGet()
-    }, [])
-
-    const RidesGet = () => {
-        fetch("https://631d211d789612cd07a69e37.mockapi.io/v1/Rides")
-          .then(res => res.json())
-          .then(
-            (result) => {
-              setRides(result)
-            }
-        )
-    }
 
 
 
