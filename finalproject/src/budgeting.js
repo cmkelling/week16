@@ -9,6 +9,10 @@ function Budgeting() {
         <>
             <h2>Budgeting</h2>
             <BudgetForm/>
+
+            <br/>
+
+            {/* Receipt form and table of expenses will go here. */}
         </>
     )
 
