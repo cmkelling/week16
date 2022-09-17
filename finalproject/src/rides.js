@@ -1,6 +1,7 @@
 import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import List from './components/rideList';
+import RideUpdate from './components/rideUpdateForm';
 
 function Rides() {
 
@@ -8,6 +9,7 @@ function Rides() {
        <> 
         <h2>Rides</h2>
         <List/>
+        <RideUpdate/>
         </>
     )
 }
