@@ -11,13 +11,20 @@ class RidesAPI {
         }
     }
 
-    pub = async(ride) => {
-        const resp = await fetch(`${RIDES_ENDPOINT}/${rides._id}`, {
+    put = async(ride) => {
+        try{
+            const resp = await fetch(`${RIDES_ENDPOINT}/${rides._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(ride)
-        });
+            });
+            return await resp.json()
+        } catch(e) {
+            console.log('Oops, Looks like updatingRides had an issue.', e)
+        };
     }
 }
+
+export const ridesAPI = new RidesAPI;
