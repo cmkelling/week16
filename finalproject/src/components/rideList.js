@@ -1,8 +1,41 @@
 import React, { useEffect, useState } from 'react';
+import Ride from './Ride';
 import { ridesAPI } from '../rest/RidesAPI';
 
 
 export default function List (){
+    state = {
+        rides: []
+    };
+
+    function componentDidMount(){
+        this.fetchRides()
+    };
+
+    fetchRides = async () => {
+        const rides = await ridesAPI.get();
+        this.setState({ rides });
+    };
+
+    updateRide = async (updatedRide) => {
+        await ridesAPI.put(updatedRide);
+        this.fetchRides();
+    };
+
+    return(
+        <div className='ride-list'>
+            {componentDidMount()}
+            {this.state.rides.map((ride) => (
+                <Ride
+                    ride = { ride }
+                    key = { ride._id }
+                    updateRide = { this.updateRide }
+                />
+            ))}
+        </div>
+    )
+
+
 
     // let apiEndpoint = 'https://631d211d789612cd07a69e37.mockapi.io/v1/Rides';
 
