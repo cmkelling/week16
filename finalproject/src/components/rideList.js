@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Ride from './Ride';
+import { Ride } from './Ride';
 import { ridesAPI } from '../rest/RidesAPI';
 
 
