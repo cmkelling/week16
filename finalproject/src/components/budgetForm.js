@@ -15,6 +15,7 @@ export default function BudgetForm (props) {
     const [food, setFood] = useState('');
     const [lane, setLane] = useState('');
     const [souvenirs, setSouvenirs] = useState('');
+    const [extra, setExtra] = useState('');
   
     const changeName = (event) => {
     setName(event.target.value);
@@ -55,6 +56,10 @@ export default function BudgetForm (props) {
     const changeSouvenirs = (event) => {
         setSouvenirs(event.target.value);
     };
+
+    const changeExtra = (event) => {
+        setExtra(event.target.value);
+    };
   
     const transferValue = (event) => {
     event.preventDefault();
@@ -68,7 +73,8 @@ export default function BudgetForm (props) {
       genie,
       food,
       lane,
-      souvenirs
+      souvenirs,
+      extra
     };
     props.func(val);
     clearState();
@@ -85,6 +91,7 @@ export default function BudgetForm (props) {
     setFood('');
     setLane('');
     setSouvenirs('');
+    setExtra('');
     };
 
     return (
