@@ -143,7 +143,7 @@ export default function BudgetForm (props) {
                         <Form.Label>Extra Expenses</Form.Label>
                         <Form.Control value={ extra } type='text' placeholder='Budget for Extra Expenses'/>
                 </FormGroup>
-                <Button variant="info" type="submit" value="input">Submit</Button>
+                <Button variant="info" type="submit" value="input" onClick={transferValue}>Submit</Button>
 
             </Form>
         </>
