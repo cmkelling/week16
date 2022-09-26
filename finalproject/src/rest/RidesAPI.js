@@ -13,7 +13,7 @@ class RidesAPI {
 
     put = async(ride) => {
         try{
-            const resp = await fetch(`${RIDES_ENDPOINT}/${rides._id}`, {
+            const resp = await fetch(`${RIDES_ENDPOINT}/${Rides._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
