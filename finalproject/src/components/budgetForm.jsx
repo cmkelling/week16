@@ -78,7 +78,7 @@ export default function BudgetForm (props) {
       extra
     };
     props.func(val);
-    jsonData.concat(val)//func not a function, not transfering through props?
+    jsonData.concat([...jsonData, val])//need to add data to array
     clearState();
     };
   

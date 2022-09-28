@@ -5,6 +5,12 @@ import jsonData from './data.json';
 export default function BudgetTable() {
     const [budgetData, setBudgetData] = useState(jsonData);
 
+    const handleChange = (data) => {
+        console.log("change data, add modal");
+    }
+    const deleteRow = (index) => () =>
+        setBudgetData((budgetData) => budgetData.filter((_, i) => i !== index));
+
     const tableRows = budgetData.map((info) => { 
         return (
             <tr>
@@ -20,6 +26,10 @@ export default function BudgetTable() {
                 <td>{info.lane}</td>
                 <td>{info.souvenirs}</td>
                 <td>{info.extra}</td>
+                <td>
+                    <button type='button' className='btn btn-danger' onClick={deleteRow}>Delete</button>
+                    <button type='button' className='btn btn-primary' onClick={(event) => handleChange(info)}>Update</button>
+                </td>
             </tr>
         );
     });
@@ -49,6 +59,7 @@ export default function BudgetTable() {
                         <th>Lane</th>
                         <th>Souvenirs</th>
                         <th>Extra</th>
+                        <th>Delete, Update</th>
                     </tr>
                 </thead>
                 <tbody>{tableRows}</tbody>
