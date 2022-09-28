@@ -76,7 +76,7 @@ export default function BudgetForm (props) {
       souvenirs,
       extra
     };
-    props.func(val);
+    props.func(val);//func not a function, not transfering through props?
     clearState();
     };
   
