@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, FormGroup, Row } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
+import jsonData from './data.json';
 
 export default function BudgetForm (props) {
 
@@ -76,7 +77,8 @@ export default function BudgetForm (props) {
       souvenirs,
       extra
     };
-    props.func(val);//func not a function, not transfering through props?
+    props.func(val);
+    jsonData.concat(val)//func not a function, not transfering through props?
     clearState();
     };
   
