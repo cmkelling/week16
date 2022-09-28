@@ -76,7 +76,7 @@ export default function BudgetForm (props) {
       souvenirs,
       extra
     };
-    // props.push(val);
+    props.func(val);
     clearState();
     };
   
