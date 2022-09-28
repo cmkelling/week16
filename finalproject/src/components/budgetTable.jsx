@@ -53,7 +53,7 @@ export default function BudgetTable() {
                 </thead>
                 <tbody>{tableRows}</tbody>
             </table>
-            <BudgetForm func={addRows}/>
+            <BudgetForm key={this.info.id} func={addRows}/>
         </div>
     );
 }

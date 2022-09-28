@@ -17,7 +17,7 @@ function App() {
     <div>
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand className='dis-knee' to="./home">Disney 2023</Navbar.Brand>
+          <Navbar.Brand className='dis-knee' as={Link} to="/">Disney 2023</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link className='dis-knee' as={Link} to="./home">Home</Nav.Link>
             <Nav.Link className='dis-knee' as={Link} to="./hotelFood">Hotel + Food</Nav.Link>
@@ -29,6 +29,7 @@ function App() {
 
         <Routes>
           
+          <Route path='/' element={<Home/>}/>
           <Route path='/home' element={<Home/>}/>
           <Route path='/hotelFood' element={<HotelFood/>}/>
           <Route path='/rides' element={<Rides/>}/>
