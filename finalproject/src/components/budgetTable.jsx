@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BudgetForm from './budgetForm';
+import jsonData from './data.json';
 
 export default function BudgetTable() {
-    const [budgetData, setBudgetData] = useState();
+    const [budgetData, setBudgetData] = useState(jsonData);
 
     const tableRows = budgetData.map((info) => { 
         return (
@@ -18,7 +19,7 @@ export default function BudgetTable() {
                 <td>{info.food}</td>
                 <td>{info.lane}</td>
                 <td>{info.souvenirs}</td>
-                <td>{info.extras}</td>
+                <td>{info.extra}</td>
             </tr>
         );
     });
@@ -33,7 +34,7 @@ export default function BudgetTable() {
     
     return(
         <div>
-            <table className='table table-striped'>
+            <table className='table table-primary table-striped'>
                 <thead>
                     <tr>
                         <th>ID</th>

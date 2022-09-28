@@ -4,24 +4,53 @@ import { ridesAPI } from '../rest/RidesAPI';
 
 
 export default class List extends React.Component{
-    state = {
-        rides: []
+    constructor(){
+        super()
+        this.state = {
+            rides: []
+        };
+    }
+
+    checkRideName = (ride) => {
+        console.log("Shows a ride object:", ride); //Shows a room object in the console
+    
+        //If the room name is null or empty return an empty string
+        if (ride=== null || ride=== "") {
+          return "";
+        }
+        //If the room name is not null or empty return the room name
+        else {
+          return ride.name;
+        }
+      };
+    
+      //function to check if the room area is null or empty
+      checkRoomTime = (ride) => {
+        //If the room area is null or empty return an empty string
+        if (ride === null || ride === "") {
+          return "";
+        }
+        //If the room area is not null or empty return the room area
+        else {
+          return ride.time;
+        }
+      };
+    
+
+    fetchRides = async () => {
+        const rides = await ridesAPI.get();
+        this.setState({ rides });
+    };
+
+    updateRide = async (updatedRide) => {
+        await ridesAPI.put(updatedRide);
+        this.fetchRides();
     };
     render () {
+        //move 16-28 above render
         function componentDidMount(){
             this.fetchRides()
         };
-    
-         const fetchRides = async () => {
-            const rides = await ridesAPI.get();
-            this.setState({ rides });
-        };
-    
-        const updateRide = async (updatedRide) => {
-            await ridesAPI.put(updatedRide);
-            this.fetchRides();
-        };
-    
         return(
             <div className='ride-list'>
                 {componentDidMount()}

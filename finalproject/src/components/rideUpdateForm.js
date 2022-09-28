@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Row } from 'react-bootstrap';
 
+
 export default function RideUpdate (props) {
     const { rideName, setName }=useState('');
-    const { rideLine, setLine }=useState('');
-    const { rideTime, setTime }=useState(undefined);
-    const { rideWill, setWill }=useState('');
+    const { rideLine, setLine }=useState();
+    const { rideTime, setTime }=useState();
+    const { rideWill, setWill }=useState();
 
     const handleInput = (e) => {
         const int= parseInt(e.target.value, 10);
