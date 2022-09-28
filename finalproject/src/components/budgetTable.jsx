@@ -5,13 +5,24 @@ import jsonData from './data.json';
 export default function BudgetTable() {
     const [budgetData, setBudgetData] = useState(jsonData);
 
-    const handleChange = (data) => {
+    const handleChange = (id) => {
         console.log("change data, add modal");
-    }
-    const deleteRow = (index) => () =>
-        setBudgetData((budgetData) => budgetData.filter((_, i) => i !== index));
+        const budgetToUpdate = budgetData.filter(info => info.id === id)
+        const i = budgetData.indexOf(budgetToUpdate);
 
-    const tableRows = budgetData.map((info) => { 
+        const copyOfBudget = { ...budgetToUpdate}
+
+        const copyOfBudgetList = budgetData.slice()
+        copyOfBudgetList[i] = copyOfBudget;
+
+        this.setBudgetData({ budgetData: copyOfBudgetList})
+        
+    }
+    const deleteRow = (index) => {
+        console.log("complete delete function");
+        setBudgetData((budgetData) => budgetData.filter((_, i) => i !== index));}
+
+    const tableRows = budgetData.map((info, index) => { 
         return (
             <tr>
                 <td>{info.id}</td>
@@ -27,8 +38,8 @@ export default function BudgetTable() {
                 <td>{info.souvenirs}</td>
                 <td>{info.extra}</td>
                 <td>
-                    <button type='button' className='btn btn-danger' onClick={deleteRow}>Delete</button>
-                    <button type='button' className='btn btn-primary' onClick={(event) => handleChange(info)}>Update</button>
+                    <button type='button' className='btn btn-danger' onClick={() => deleteRow(index)}>Delete</button>
+                    <button type='button' className='btn btn-primary' onClick={(event) => handleChange()}>Update</button>
                 </td>
             </tr>
         );
