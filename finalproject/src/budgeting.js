@@ -1,7 +1,6 @@
 import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-import BudgetForm from './components/budgetForm';
 import BudgetTable from './components/budgetTable';
 
 function Budgeting() {
