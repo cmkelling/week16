@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import BudgetForm from './budgetForm';
 import jsonData from './data.json';
-import BudgetModal from './budgetModal';
 
 export default function BudgetTable() {
     const [budgetData, setBudgetData] = useState(jsonData);
@@ -11,13 +10,12 @@ export default function BudgetTable() {
         const budgetToUpdate = budgetData.filter(info => info.id === id)
         const i = budgetData.indexOf(budgetToUpdate);
 
-        const copyOfBudget = { ...budgetToUpdate}
+        const copyOfbudget = { ...budgetToUpdate}
 
-        const copyOfBudgetList = budgetData.slice()
-        copyOfBudgetList[i] = copyOfBudget;
+        const copyOfbudgetList = budgetData.slice()
+        copyOfbudgetList[i] = copyOfbudget;
 
-        this.setBudgetData({ budgetData: copyOfBudgetList})
-        
+        this.setBudgetData({ budgetData: copyOfbudgetList})
     }
 
     const deleteRow = (index) => {
@@ -26,7 +24,7 @@ export default function BudgetTable() {
 
     const tableRows = budgetData.map((info, index) => { 
         return (
-            <tr>
+            <tr key={index}>
                 <td>{info.id}</td>
                 <td>{info.name}</td>
                 <td>{info.total}</td>
@@ -41,7 +39,7 @@ export default function BudgetTable() {
                 <td>{info.extra}</td>
                 <td>
                     <button type='button' className='btn btn-danger' onClick={() => deleteRow(index)}>Delete</button>
-                    <button type='button' className='btn btn-primary' onClick={() => { <BudgetModal/> }}>Update</button>
+                    <button type='button' className='btn btn-primary' onClick={() => handleChange()}>Update</button>
                 </td>
             </tr>
         );

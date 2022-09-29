@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Ride } from './Ride';
-import { ridesAPI } from '../rest/RidesAPI';
+import { Ride } from '../Ride';
+import { ridesAPI } from '../../rest/RidesAPI';
 
 
 export default class List extends React.Component{

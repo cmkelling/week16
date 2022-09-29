@@ -18,19 +18,14 @@ export default function RideTable() {
         this.setRideData({ rideData: copyOfRideList})
     }
 
-    const [show, setShow] = useState(false);
-  
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
     const deleteRow = (index) => {
         console.log("complete delete function");
         setRideData((rideData) => rideData.filter((_, i) => i !== index));
     }
 
-    const tableRows = budgetData.map((info, index) => { 
+    const tableRows = rideData.map((info, index) => { 
         return (
-            <tr>
+            <tr key={index}>
                 <td>{info.id}</td>
                 <td>{info.rideName}</td>
                 <td>{info.rideLine}</td>
@@ -38,7 +33,7 @@ export default function RideTable() {
                 <td>{info.rideWill}</td>
                 <td>
                     <button type='button' className='btn btn-danger' onClick={() => deleteRow(index)}>Delete</button>
-                    <button type='button' className='btn btn-primary' onClick={() => handleShow()}>Update</button>
+                    <button type='button' className='btn btn-primary' onClick={() => handleChange(info.id)}>Update</button>
                 </td>
             </tr>
         );

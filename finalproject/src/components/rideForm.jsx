@@ -35,7 +35,7 @@ export default function RideForm (props) {
              <Row>
              <FormGroup className='col-6' controlId='rideName'>
                      <Form.Label>Ride Name</Form.Label>
-                     <Form.Control value={rideName} onChange={(e) => setName(e.target.value)} type='text' placeholder='Ride Name as Listed'/>
+                     <Form.Control value={rideName} onChange={(e) => setRideName(e.target.value)} type='text' placeholder='Ride Name as Listed'/>
              </FormGroup>
              <FormGroup className='col-6' controlId='rideLine'>
                      <Form.Label>Is there a special line?</Form.Label>
@@ -53,7 +53,7 @@ export default function RideForm (props) {
              </FormGroup>
              </Row>
              <br/>
-             <Button variant="info" type="submit" value="input" onClick={transferValue}>Update</Button>
+             <Button variant="info" type="submit" value="input" onClick={transferValue}>Add</Button>
         </Form>
     )
 }
