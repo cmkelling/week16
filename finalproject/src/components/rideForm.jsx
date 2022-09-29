@@ -54,6 +54,7 @@ export default function RideForm (props) {
              </Row>
              <br/>
              <Button variant="info" type="submit" value="input" onClick={transferValue}>Add</Button>
+             <Button variant="info" type="submit" value="input" onClick={transferValue}>Update</Button>
         </Form>
     )
 }

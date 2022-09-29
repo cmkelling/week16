@@ -5,17 +5,9 @@ import jsonData from './data.json';
 export default function BudgetTable() {
     const [budgetData, setBudgetData] = useState(jsonData);
 
-    const handleChange = (id) => {
+    const handleChange = (event) => {
         console.log("change data, add modal");
-        const budgetToUpdate = budgetData.filter(info => info.id === id)
-        const i = budgetData.indexOf(budgetToUpdate);
-
-        const copyOfbudget = { ...budgetToUpdate}
-
-        const copyOfbudgetList = budgetData.slice()
-        copyOfbudgetList[i] = copyOfbudget;
-
-        this.setBudgetData({ budgetData: copyOfbudgetList})
+        setBudgetData(event.target.value)
     }
 
     const deleteRow = (index) => {
