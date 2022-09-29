@@ -1,4 +1,4 @@
-import { react, useState }  from "react";
+import React, { useState }  from "react";
 import { Modal }  from "react-bootstrap";
 import { Button } from "react-bootstrap";
 
@@ -6,7 +6,6 @@ export default function BudgetModal() {
     const [show, setShow] = useState(false);
   
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     return (
       <>

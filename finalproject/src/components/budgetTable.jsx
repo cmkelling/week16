@@ -5,7 +5,6 @@ import BudgetModal from './budgetModal';
 
 export default function BudgetTable() {
     const [budgetData, setBudgetData] = useState(jsonData);
-    const [show, setShow] = useState(false);
 
     const handleChange = (id) => {
         console.log("change data, add modal");
@@ -20,9 +19,6 @@ export default function BudgetTable() {
         this.setBudgetData({ budgetData: copyOfBudgetList})
         
     }
-  
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     const deleteRow = (index) => {
         console.log("complete delete function");
@@ -45,7 +41,7 @@ export default function BudgetTable() {
                 <td>{info.extra}</td>
                 <td>
                     <button type='button' className='btn btn-danger' onClick={() => deleteRow(index)}>Delete</button>
-                    <button type='button' className='btn btn-primary' onClick={() => handleShow()}>Update</button>
+                    <button type='button' className='btn btn-primary' onClick={() => { <BudgetModal/> }}>Update</button>
                 </td>
             </tr>
         );
