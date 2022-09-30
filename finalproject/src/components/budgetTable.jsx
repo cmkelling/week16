@@ -66,7 +66,7 @@ export default function BudgetTable() {
     const updateRow = (index, data) => {
         console.log(index);
         console.log(data.name);
-        data.id = index;
+        const getRowId = params => params.data.id
         const updatedBudgetData = [...budgetData];
         updatedBudgetData.splice(index, 1, data);
         setBudgetData(updatedBudgetData);
