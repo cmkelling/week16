@@ -39,7 +39,7 @@ h3, p{
   font-size: x-large;
 }
 
-.card{
+.card, .modal{
   color: black;
   font-family: Trattatello, fantasy;
   font-size: larger;

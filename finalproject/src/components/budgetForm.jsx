@@ -94,7 +94,7 @@ export default function BudgetForm (props) {
       extra
     };
     props.func(val);
-    jsonData([...jsonData].concat(val))//need to add data to array
+    jsonData.concat([...jsonData], val)//need to add data to array
     clearState();
     };
   
