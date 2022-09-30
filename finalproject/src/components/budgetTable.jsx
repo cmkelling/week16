@@ -64,14 +64,28 @@ export default function BudgetTable() {
 
     const updateRow = (index, data) => {
         console.log('update complete');
-        data.id = index;
+        const totalBudget = budgetData.length;
+        data.id = totalBudget + 1;
         const updatedBudgetData = [...budgetData];
         updatedBudgetData.splice(index - 1, 1, data);
         setBudgetData(updatedBudgetData);
     }
 
-    const transferValue = (event) => {
+    const transferFormValue = (event) => {
         event.preventDefault();
+        const clearState = () => {
+            setName('');
+            setTotal('');
+            setPlane('');
+            setHotel('');
+            setPark('');
+            setHopper('');
+            setGenie('');
+            setFood('');
+            setLane('');
+            setSouvenirs('');
+            setExtra('');
+            };
         const val = {
           name,
           total,
@@ -86,7 +100,11 @@ export default function BudgetTable() {
           extra
         };
         updateRow(val);
-        jsonData.concat([...jsonData], val)//need to add data to array
+        jsonData.concat([...jsonData], val)
+        clearState();
+  
+        
+        //need to add data to array
         handleClose();
         };
 
@@ -185,7 +203,7 @@ export default function BudgetTable() {
                 <Button variant="secondary" onClick={handleClose}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={transferValue}>
+                <Button variant="primary" onClick={transferFormValue}>
                     Save Changes
                 </Button>
                 </Modal.Footer>

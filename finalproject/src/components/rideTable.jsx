@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
+import { Modal } from 'react-bootstrap';
+import { Form, FormGroup, Row } from 'react-bootstrap'
+import { Button } from 'react-bootstrap';
 import RideForm from './rideForm';
 import RideData from './rideData';
 
 export default function RideTable() {
     const [rideData, setRideData] = useState(RideData);
 
-    const handleChange = (id) => {
-        console.log("change data, add modal");
-        const rideToUpdate = rideData.filter(info => info.id === id)
-        const i = rideData.indexOf(rideToUpdate);
+    const [rideName, setRideName] = useState('');
+    const [rideLine, setLine] = useState('');
+    const [rideTime, setTime] = useState('');
+    const [rideWill, setWill] = useState('');
 
-        const copyOfRide = { ...rideToUpdate}
+    const [show, setShow] = useState(false);
 
-        const copyOfRideList = rideData.slice()
-        copyOfRideList[i] = copyOfRide;
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
-        this.setRideData({ rideData: copyOfRideList})
-    }
 
     const deleteRow = (index) => {
         console.log("complete delete function");
@@ -33,7 +34,7 @@ export default function RideTable() {
                 <td>{info.rideWill}</td>
                 <td>
                     <button type='button' className='btn btn-danger' onClick={() => deleteRow(index)}>Delete</button>
-                    <button type='button' className='btn btn-primary' onClick={() => handleChange(info.id)}>Update</button>
+                    <button type='button' className='btn btn-primary' onClick={() => handleShow}>Update</button>
                 </td>
             </tr>
         );
@@ -45,6 +46,36 @@ export default function RideTable() {
         const updatedRideData = [...rideData];
         updatedRideData.push(data);
         setRideData (updatedRideData);
+    };
+
+    const updateRow = (data) => {
+        const totalRides = rideData.length;
+        data.id = totalRides + 1;
+        const updatedRideData = [...rideData];
+        updatedRideData.splice(data);
+        setRideData (updatedRideData);
+    };
+
+    
+
+    const transferFormValue = (event) => {
+        event.preventDefault();
+        const val = {
+          rideName,
+          rideLine,
+          rideTime,
+          rideWill
+        };
+        updateRow(val);
+        RideData.concat([...RideData, val])//need to add data to array
+        clearState();
+    };
+
+    const clearState = () => {
+        setRideName('');
+        setLine('');
+        setTime('');
+        setWill('');
     };
 
     return(
@@ -64,6 +95,45 @@ export default function RideTable() {
             </table>
             <RideForm func={addRows}/>
             {/* add key, giving ID */}
+
+            <Modal className='modal' show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Update Ride</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <Form className='container'>
+             <Row>
+             <FormGroup className='col-6' controlId='rideName'>
+                     <Form.Label>Ride Name</Form.Label>
+                     <Form.Control value={rideName} onChange={(e) => setRideName(e.target.value)} type='text' placeholder='Ride Name as Listed'/>
+             </FormGroup>
+             <FormGroup className='col-6' controlId='rideLine'>
+                     <Form.Label>Is there a special line?</Form.Label>
+                     <Form.Control value={rideLine} onChange={(e) => setLine(e.target.value)} type='text'/>
+             </FormGroup>
+             </Row>
+             <Row>
+             <FormGroup className='col-6' controlId='rideTime'>
+                     <Form.Label>Average Ride Times</Form.Label>
+                     <Form.Control value={rideTime} onChange={(e) => setTime(e.target.value)} type='text'/>
+             </FormGroup>
+             <FormGroup className='col-6' controlId='rideWill'>
+                     <Form.Label>Average Time Willing to Wait</Form.Label>
+                     <Form.Control value={rideWill} onChange={(e) => setWill(e.target.value)} type='text'/>
+             </FormGroup>
+             </Row>
+             <br/>
+        </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                    Close
+                </Button>
+                <Button variant="primary" onClick={transferFormValue}>
+                    Save Changes
+                </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     );
 }
