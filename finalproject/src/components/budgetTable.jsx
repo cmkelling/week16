@@ -63,7 +63,8 @@ export default function BudgetTable() {
     };
 
     const updateRow = (index, data) => {
-        console.log('update complete');
+        console.log(index);
+        console.log(index.name);
         const totalBudget = budgetData.length;
         data.id = totalBudget + 1;
         const updatedBudgetData = [...budgetData];
@@ -71,7 +72,7 @@ export default function BudgetTable() {
         setBudgetData(updatedBudgetData);
     }
 
-    const transferFormValue = (event) => {
+    const transferFormValue = (event, index) => {
         event.preventDefault();
         const clearState = () => {
             setName('');
@@ -99,7 +100,7 @@ export default function BudgetTable() {
           souvenirs,
           extra
         };
-        updateRow(val);
+        updateRow(val, index);
         jsonData.concat([...jsonData], val)
         clearState();
   
