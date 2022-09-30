@@ -100,7 +100,7 @@ export default function BudgetTable() {
           souvenirs,
           extra
         };
-        updateRow(val, index);
+        updateRow(index, val);
         jsonData.concat([...jsonData], val)
         clearState();
   
