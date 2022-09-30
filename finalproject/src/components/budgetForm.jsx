@@ -61,22 +61,6 @@ export default function BudgetForm (props) {
     const changeExtra = (event) => {
         setExtra(event.target.value);
     };
-
-    const editValue = (event, id) => {
-        if (id === event.target.id){
-            changeName();
-            changeTotal();
-            changePlane();
-            changeHotel();
-            changePark();
-            changeHopper();
-            changeGenie();
-            changeLane();
-            changeFood();
-            changeSouvenirs();
-            changeExtra();
-        }
-    } 
   
     const transferValue = (event) => {
     event.preventDefault();
@@ -169,7 +153,6 @@ export default function BudgetForm (props) {
                         <Form.Control value={ extra } onChange={(e) => setExtra(e.target.value)} type='text' placeholder='Budget for Extra Expenses'/>
                 </FormGroup>
                 <Button variant="info" type="submit" value="input" onClick={transferValue}>Submit</Button>
-                <Button variant="info" type="submit" value="input" onClick={editValue}>Update</Button>
 
             </Form>
         </>

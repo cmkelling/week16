@@ -24,11 +24,12 @@ export default function BudgetTable() {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = (index) => setShow(true);
 
 
     const deleteRow = (index) => {
         console.log("complete delete function");
+        console.log(index);
         setBudgetData((budgetData) => budgetData.filter((_, i) => i !== index));}
 
     const tableRows = budgetData.map((info, index) => { 
@@ -64,11 +65,10 @@ export default function BudgetTable() {
 
     const updateRow = (index, data) => {
         console.log(index);
-        console.log(index.name);
-        const totalBudget = budgetData.length;
-        data.id = totalBudget + 1;
+        console.log(data.name);
+        data.id = index;
         const updatedBudgetData = [...budgetData];
-        updatedBudgetData.splice(index - 1, 1, data);
+        updatedBudgetData.splice(index, 1, data);
         setBudgetData(updatedBudgetData);
     }
 
