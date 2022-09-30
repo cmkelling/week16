@@ -62,10 +62,12 @@ export default function BudgetTable() {
         setBudgetData (updatedBudgetData);
     };
 
-    const updateRow = (index) => {
+    const updateRow = (index, data) => {
         console.log('update complete');
+        data.id = index;
         const updatedBudgetData = [...budgetData];
-        updatedBudgetData.splice(index, 1, )
+        updatedBudgetData.splice(index - 1, 1, data);
+        setBudgetData(updatedBudgetData);
     }
 
     const transferValue = (event) => {
@@ -83,7 +85,7 @@ export default function BudgetTable() {
           souvenirs,
           extra
         };
-        updateRow();
+        updateRow(val);
         jsonData.concat([...jsonData], val)//need to add data to array
         handleClose();
         };
