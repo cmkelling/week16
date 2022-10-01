@@ -21,12 +21,17 @@ export default function BudgetTable() {
     const [souvenirs, setSouvenirs] = useState('');
     const [extra, setExtra] = useState('');
 
+    //hook for is editing
+    const [isEditing, setIsEditing] = React.useState(false); //false by default
+    //hook for editing text
+    const [editingText, setEditingText] = React.useState(""); //accepts empty string by default
+
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = (index) => setShow(true);
 
-
+//delete
     const deleteRow = (index) => {
         console.log("complete delete function");
         console.log(index);
@@ -49,12 +54,12 @@ export default function BudgetTable() {
                 <td>{info.extra}</td>
                 <td>
                     <button type='button' className='btn btn-danger' onClick={() => deleteRow(index)}>Delete</button>
-                    <button type='button' className='btn btn-primary' onClick={() => handleShow()}>Update</button>
+                    <button type='button' className='btn btn-primary' onClick={() => handleShow()+ editHandler()}>Update</button>
                 </td>
             </tr>
         );
     });
-
+//create
     const addRows = (data) => {
         const totalBudget = budgetData.length;
         data.id = totalBudget + 1;
@@ -62,52 +67,73 @@ export default function BudgetTable() {
         updatedBudgetData.push(data);
         setBudgetData (updatedBudgetData);
     };
-
-    const updateRow = (index, data) => {
-        console.log(index);
-        console.log(data.name);
-        const getRowId = params => params.data.id
-        const updatedBudgetData = [...budgetData];
-        updatedBudgetData.splice(index, 1, data);
-        setBudgetData(updatedBudgetData);
+//update
+    //onclick to start editing
+    const editHandler = () => {
+        setIsEditing(true); //set isEditing to true to start editing
     }
 
-    const transferFormValue = (event, index) => {
-        event.preventDefault();
-        const clearState = () => {
-            setName('');
-            setTotal('');
-            setPlane('');
-            setHotel('');
-            setPark('');
-            setHopper('');
-            setGenie('');
-            setFood('');
-            setLane('');
-            setSouvenirs('');
-            setExtra('');
-            };
-        const val = {
-          name,
-          total,
-          plane,
-          hotel,
-          park,
-          hopper,
-          genie,
-          food,
-          lane,
-          souvenirs,
-          extra
-        };
-        updateRow(index, val);
-        jsonData.concat([...jsonData], val)
-        clearState();
+    //onchange to edit text
+    const editChangeHandler = (e) => {
+        setEditingText(e.target.value); //setting the value of the input to the state
+    }
+
+    const saveEditHandler = (e) => { //e is event
+        e.preventDefault(); //prevents page from refreshing
+        setBudgetData(budgetData.map(info => { //map through todos to find the one to edit
+            if (info.id === budgetData.id) { //comparing the one clicked to the state (todo.id is the id of the one clicked)
+                return {
+                    ...info, text: editingText //item is the one clicked, text is the property, editingText is the value of the state (the input)
+                }
+            }
+            return info; //returning item if did not match
+        }))
+        setIsEditing(false); //set isEditing to false to stop editing
+    }
+
+    // const updateRow = (index, data) => {
+    //     console.log(index);
+    //     console.log(data.name);
+    //     data.id = index;
+    //     const updatedBudgetData = [...budgetData];
+    //     updatedBudgetData.splice(index, 1, data);
+    //     setBudgetData(updatedBudgetData);
+    // }
+
+    // const transferFormValue = (event, index) => {
+    //     event.preventDefault();
+    //     const clearState = () => {
+    //         setName('');
+    //         setTotal('');
+    //         setPlane('');
+    //         setHotel('');
+    //         setPark('');
+    //         setHopper('');
+    //         setGenie('');
+    //         setFood('');
+    //         setLane('');
+    //         setSouvenirs('');
+    //         setExtra('');
+    //         };
+    //     const val = {
+    //       name,
+    //       total,
+    //       plane,
+    //       hotel,
+    //       park,
+    //       hopper,
+    //       genie,
+    //       food,
+    //       lane,
+    //       souvenirs,
+    //       extra
+    //     };
+    //     updateRow(index, val);
+    //     jsonData.concat([...jsonData], val)
+    //     clearState();
   
-        
-        //need to add data to array
-        handleClose();
-        };
+    //     handleClose();
+    //     };
 
     // const handleChange = () => {
     //     console.log("change data, add modal");
@@ -144,70 +170,71 @@ export default function BudgetTable() {
                 <Modal.Title>Update Ride</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form className='container'>
+                    {isEditing ? (<Form className='container' onSubmit={saveEditHandler}>
                         <FormGroup className='mb-3' controlId='formName'>
                             <Form.Label>Your Name</Form.Label>
-                            <Form.Control value={ name } onChange={(event) => setName(event.target.value)} type='text' placeholder='First Name Only'/>
+                            <Form.Control value={ editingText } onChange={editChangeHandler} type='text' placeholder='First Name Only'/>
                         </FormGroup>
                         <FormGroup className='mb-3' controlId='formTotalBudget'>
                             <Form.Label>Total Budget Amount</Form.Label>
-                            <Form.Control value={ total } onChange={(event) => setTotal(event.target.value)} type='text' placeholder='Total willing/ saved up to spend'/>
+                            <Form.Control value={ editingText } onChange={editChangeHandler} type='text' placeholder='Total willing/ saved up to spend'/>
                         </FormGroup>
                         <Row>
                             <FormGroup className='col-4' controlId='formFixedPlane'>
                                 <Form.Label>Plane Ticket</Form.Label>
-                                <Form.Control value={ plane } onChange={(event) => setPlane(event.target.value)} type='text' placeholder='Cost of Ticket'/>
+                                <Form.Control value={ editingText } onChange={editChangeHandler} type='text' placeholder='Cost of Ticket'/>
                             </FormGroup>
                             <FormGroup className='col-4' controlId='formFixedHotel'>
                                 <Form.Label>Hotel</Form.Label>
-                                <Form.Control value={ hotel } onChange={(e) => setHotel(e.target.value)} type='text' placeholder='Cost of Hotel for Entire Visit'/>
+                                <Form.Control value={ editingText } onChange={editChangeHandler} type='text' placeholder='Cost of Hotel for Entire Visit'/>
                             </FormGroup>
                             <FormGroup className='col-4' controlId='formFixedTicket'>
                                 <Form.Label>Park Ticket</Form.Label>
-                                <Form.Control value={ park } onChange={(e) => setPark(e.target.value)} type='text' placeholder='Cost of Park Ticket'/>
+                                <Form.Control value={ editingText } onChange={editChangeHandler} type='text' placeholder='Cost of Park Ticket'/>
                             </FormGroup>
                         </Row>
                         <br/>
                         <Row>
                             <FormGroup className='col-6' controlId='formFixedHopper'>
                                 <Form.Label>Park Hopper</Form.Label>
-                                <Form.Control value={ hopper } onChange={(e) => setHopper(e.target.value)} type='text' placeholder='Cost of Park Hopper'/>
+                                <Form.Control value={ editingText } onChange={editChangeHandler} type='text' placeholder='Cost of Park Hopper'/>
                             </FormGroup>
                             <FormGroup className='col-6' controlId='formFixedGenie'>
                                 <Form.Label>Genie+</Form.Label>
-                                <Form.Control value={ genie } onChange={(e) => setGenie(e.target.value)} type='text' placeholder='Cost of Genie+'/>
+                                <Form.Control value={ editingText } onChange={editChangeHandler} type='text' placeholder='Cost of Genie+'/>
                             </FormGroup>
                         </Row>
                         <br/>
                         <Row>
                             <FormGroup className='col-4' controlId='formFood'>
                                 <Form.Label>Food</Form.Label>
-                                <Form.Control value={ food } onChange={(e) => setFood(e.target.value)} type='text' placeholder='Budget for Food'/>
+                                <Form.Control value={ editingText } onChange={editChangeHandler} type='text' placeholder='Budget for Food'/>
                             </FormGroup>
                             <FormGroup className='col-4' controlId='formLightingLane'>
                                 <Form.Label>Lightening Lane</Form.Label>
-                                <Form.Control value={ lane } onChange={(e) => setLane(e.target.value)} type='text' placeholder='Budget for Lightening Lane'/>
+                                <Form.Control value={ editingText } onChange={editChangeHandler} type='text' placeholder='Budget for Lightening Lane'/>
                             </FormGroup>
                             <FormGroup className='col-4' controlId='formSouvenirs'>
                                 <Form.Label>Souvenirs</Form.Label>
-                                <Form.Control value={ souvenirs } onChange={(e) => setSouvenirs(e.target.value)} type='text' placeholder='Budget for Souvenirs'/>
+                                <Form.Control value={ editingText } onChange={editChangeHandler} type='text' placeholder='Budget for Souvenirs'/>
                             </FormGroup>
                         </Row>
                         <br/>
                         <FormGroup className='mb-3' controlId='formMisc'>
                                 <Form.Label>Extra Expenses</Form.Label>
-                                <Form.Control value={ extra } onChange={(e) => setExtra(e.target.value)} type='text' placeholder='Budget for Extra Expenses'/>
+                                <Form.Control value={ editingText } onChange={editChangeHandler} type='text' placeholder='Budget for Extra Expenses'/>
                         </FormGroup>
-                    </Form>
+                        <Button variant="primary" onClick={saveEditHandler}>
+                        Save Changes
+                        </Button>
+                    </Form>) : ( 
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                        Close
+                        </Button>
+                        
+                    </Modal.Footer>)} 
                 </Modal.Body>
-                <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                    Close
-                </Button>
-                <Button variant="primary" onClick={transferFormValue}>
-                    Save Changes
-                </Button>
-                </Modal.Footer>
             </Modal>
             {/* add key, giving ID */}
         </div>
