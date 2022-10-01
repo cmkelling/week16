@@ -33,7 +33,7 @@ export default function BudgetTable() {
 
 //delete
     const deleteRow = (index) => {
-        console.log("complete delete function");
+        console.log("complete delete");
         console.log(index);
         setBudgetData((budgetData) => budgetData.filter((_, i) => i !== index));}
 
@@ -80,13 +80,13 @@ export default function BudgetTable() {
 
     const saveEditHandler = (e) => { //e is event
         e.preventDefault(); //prevents page from refreshing
-        setBudgetData(budgetData.map(info => { //map through todos to find the one to edit
-            if (info.id === budgetData.id) { //comparing the one clicked to the state (todo.id is the id of the one clicked)
+        setBudgetData((budgetData) => budgetData.map(item => { //map through budgets to find the one to edit
+            if (item.id === budgetData.id) { //comparing the one clicked to the state (budget.id is the id of the one clicked)
                 return {
-                    ...info, text: editingText //item is the one clicked, text is the property, editingText is the value of the state (the input)
+                    ...item, text: editingText //item is the one clicked, text is the property, editingText is the value of the state (the input)
                 }
             }
-            return info; //returning item if did not match
+            return item; //returning item if did not match
         }))
         setIsEditing(false); //set isEditing to false to stop editing
     }
@@ -134,13 +134,6 @@ export default function BudgetTable() {
   
     //     handleClose();
     //     };
-
-    // const handleChange = () => {
-    //     console.log("change data, add modal");
-    //     return <Modal>
-             
-    //     </Modal>
-    // }
     
     return(
         <div>
@@ -224,7 +217,7 @@ export default function BudgetTable() {
                                 <Form.Label>Extra Expenses</Form.Label>
                                 <Form.Control value={ editingText } onChange={editChangeHandler} type='text' placeholder='Budget for Extra Expenses'/>
                         </FormGroup>
-                        <Button variant="primary" onClick={saveEditHandler}>
+                        <Button variant="primary" type="submit" onClick={handleClose}>
                         Save Changes
                         </Button>
                     </Form>) : ( 
