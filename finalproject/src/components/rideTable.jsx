@@ -54,8 +54,9 @@ export default function RideTable() {
         console.log(data.id)
         data.id = index
         const updatedRideData = [...rideData];
-        updatedRideData.splice(index, 1, data);
-        setRideData (updatedRideData);
+        rideData.splice(index, 1, data);
+        setRideData(updatedRideData);
+        
     };
 
     
