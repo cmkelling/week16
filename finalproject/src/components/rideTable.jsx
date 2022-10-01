@@ -16,7 +16,7 @@ export default function RideTable() {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = (index) => setShow(true);
 
 
     const deleteRow = (index) => {
@@ -48,17 +48,19 @@ export default function RideTable() {
         setRideData (updatedRideData);
     };
 
-    const updateRow = (data) => {
-        const totalRides = rideData.length;
-        data.id = totalRides + 1;
+    const updateRow = (index, data) => {
+        // const totalRides = rideData.length;
+        console.log(index)
+        console.log(data.id)
+        data.id = index
         const updatedRideData = [...rideData];
-        updatedRideData.splice(data);
+        updatedRideData.splice(index, 1, data);
         setRideData (updatedRideData);
     };
 
     
 
-    const transferFormValue = (event) => {
+    const transferFormValue = (event, index) => {
         event.preventDefault();
         const val = {
           rideName,
@@ -66,9 +68,11 @@ export default function RideTable() {
           rideTime,
           rideWill
         };
-        updateRow(val);
+        updateRow(index, val);
         RideData.concat([...RideData, val])//need to add data to array
         clearState();
+
+        handleClose();
     };
 
     const clearState = () => {

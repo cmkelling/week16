@@ -80,13 +80,13 @@ export default function BudgetTable() {
 
     const saveEditHandler = (e) => { //e is event
         e.preventDefault(); //prevents page from refreshing
-        setBudgetData((budgetData) => budgetData.map(item => { //map through budgets to find the one to edit
-            if (item.id === budgetData.id) { //comparing the one clicked to the state (budget.id is the id of the one clicked)
+        setBudgetData((budgetData) => budgetData.map(data => { //map through budgets to find the one to edit
+            if (data.id === budgetData.id) { //comparing the one clicked to the state (budget.id is the id of the one clicked)
                 return {
-                    ...item, text: editingText //item is the one clicked, text is the property, editingText is the value of the state (the input)
+                    ...data, text: editingText //item is the one clicked, text is the property, editingText is the value of the state (the input)
                 }
             }
-            return item; //returning item if did not match
+            return data; //returning item if did not match
         }))
         setIsEditing(false); //set isEditing to false to stop editing
     }
